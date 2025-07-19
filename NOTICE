@@ -1,0 +1,7 @@
+Restinio C Library © 2024–2025 Knode.ai
+Technical contact: Andy Curtis <contactandyc@gmail.com>
+
+This project wraps and redistributes **restinio** by Stiffstream.
+restinio is licensed under the BSD 3-Clause License (full text in
+LICENSE.restinio). Its inclusion here does not imply endorsement of this project.
+Licensed under Apache-2.0 (see LICENSE)
