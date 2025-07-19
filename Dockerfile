@@ -20,40 +20,23 @@ RUN git clone --branch asio-1-30-2 --single-branch \
     make -j$(nproc) && sudo make install && \
     rm -rf /workspace/asio
 
-# a-cmake-library
-RUN git clone \
-      https://${GITHUB_TOKEN}@github.com/knode-ai-open-source/a-cmake-library.git \
-      /workspace/a-cmake-library && \
-      cd /workspace/a-cmake-library && ./build_install.sh && \
-      rm -rf /workspace/a-cmake-library
-
-# the-macro-library
-RUN git clone \
-      https://${GITHUB_TOKEN}@github.com/knode-ai-open-source/the-macro-library.git \
-      /workspace/the-macro-library && \
-      cd /workspace/the-macro-library && ./build_install.sh && \
-      rm -rf /workspace/the-macro-library
-
-# a-memory-library
-RUN git clone \
-      https://${GITHUB_TOKEN}@github.com/knode-ai-open-source/a-memory-library.git \
-      /workspace/a-memory-library && \
-      cd /workspace/a-memory-library && ./build_install.sh && \
-      rm -rf /workspace/a-memory-library
-
-# the-lz4-library
-RUN git clone \
-      https://${GITHUB_TOKEN}@github.com/knode-ai-open-source/the-lz4-library.git \
-      /workspace/the-lz4-library && \
-      cd /workspace/the-lz4-library && ./build_install.sh && \
-      rm -rf /workspace/the-lz4-library
-
-# the-io-library
-RUN git clone \
-      https://${GITHUB_TOKEN}@github.com/knode-ai-open-source/the-io-library.git \
-      /workspace/the-io-library && \
-      cd /workspace/the-io-library && ./build_install.sh && \
-      rm -rf /workspace/the-io-library
+# --- Private dependency repos (requires secret 'gh') ---
+# Build with:
+#   DOCKER_BUILDKIT=1 docker build --secret id=gh,env=GITHUB_TOKEN -t my-image .
+# Comment out this block if all deps are public.
+RUN --mount=type=secret,id=gh,uid=1000,gid=1000,mode=0400,required \
+    set -eux; GHTOKEN="$(cat /run/secrets/gh)"; \
+    for repo in \
+        a-cmake-library \
+        the-macro-library \
+        a-memory-library \
+        the-lz4-library \
+        the-io-library \
+    ; do \
+      git clone "https://${GHTOKEN}@github.com/knode-ai-open-source/${repo}.git" "$repo"; \
+      (cd "$repo" && ./build_install.sh); \
+      rm -rf "$repo"; \
+    done
 
 # 3) Clone Restinio fork and build fmt, expected-lite, then Restinio core
 RUN git clone --branch v.0.7.3-fork --single-branch \
