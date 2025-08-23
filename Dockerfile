@@ -77,7 +77,7 @@ RUN set -eux; \
 
 # --- Build & install expected-lite ---
 RUN set -eux; \
-  git clone --depth 1 "https://github.com/andycurtis-public/restinio.git" "restinio" && \
+  git clone --depth 1 "https://github.com/contactandyc/restinio.git" "restinio" && \
   mkdir -p build/expected-lite && \
   cd build/expected-lite && \
   cmake ../../restinio/expected-lite && \
@@ -88,7 +88,7 @@ RUN set -eux; \
 
 # --- Build & install fmt ---
 RUN set -eux; \
-  git clone --depth 1 "https://github.com/andycurtis-public/restinio.git" "restinio" && \
+  git clone --depth 1 "https://github.com/contactandyc/restinio.git" "restinio" && \
   mkdir -p build/fmt && \
   cd build/fmt && \
   cmake ../../restinio/fmt && \
@@ -99,7 +99,7 @@ RUN set -eux; \
 
 # --- Build & install restinio ---
 RUN set -eux; \
-  git clone --depth 1 --branch v.0.7.3-fork --single-branch "https://github.com/andycurtis-public/restinio.git" "restinio" && \
+  git clone --depth 1 --branch v.0.7.3-fork --single-branch "https://github.com/contactandyc/restinio.git" "restinio" && \
   mkdir -p build/restinio && \
   cd build/restinio && \
   cmake ../../restinio/dev -DRESTINIO_SAMPLE=OFF -DRESTINIO_TEST=OFF -DRESTINIO_DEP_FMT=system -DRESTINIO_DEP_EXPECTED_LITE=system && \

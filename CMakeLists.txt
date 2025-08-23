@@ -59,7 +59,7 @@ target_include_directories(restinio_c_debug PUBLIC
 )
 
 set_target_properties(restinio_c_debug PROPERTIES
-  C_STANDARD 17
+  C_STANDARD 23
   C_STANDARD_REQUIRED YES
   POSITION_INDEPENDENT_CODE ON
 )
@@ -93,7 +93,7 @@ target_include_directories(restinio_c_memory PUBLIC
 )
 
 set_target_properties(restinio_c_memory PROPERTIES
-  C_STANDARD 17
+  C_STANDARD 23
   C_STANDARD_REQUIRED YES
   POSITION_INDEPENDENT_CODE ON
 )
@@ -130,7 +130,7 @@ target_include_directories(restinio_c_static PUBLIC
 )
 
 set_target_properties(restinio_c_static PROPERTIES
-  C_STANDARD 17
+  C_STANDARD 23
   C_STANDARD_REQUIRED YES
   POSITION_INDEPENDENT_CODE ON
 )
@@ -164,7 +164,7 @@ target_include_directories(restinio_c_shared PUBLIC
 )
 
 set_target_properties(restinio_c_shared PROPERTIES
-  C_STANDARD 17
+  C_STANDARD 23
   C_STANDARD_REQUIRED YES
   POSITION_INDEPENDENT_CODE ON
 )

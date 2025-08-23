@@ -22,7 +22,7 @@ add_executable(test_restinio  src/test_restinio.c)
 list(APPEND TEST_EXECUTABLES test_restinio)
 
 set_target_properties(test_restinio PROPERTIES
-  C_STANDARD 17
+  C_STANDARD 23
   C_STANDARD_REQUIRED YES
 )
 if("CXX" IN_LIST CMAKE_PROJECT_LANGUAGES)
